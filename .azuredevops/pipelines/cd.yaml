@@ -7,5 +7,11 @@ steps:
   - checkout: self
 
   - powershell: |
-      ./scripts/deploy.ps1
+      Write-Host "Current Directory:"
+      Get-Location
+
+      Write-Host "Listing files:"
+      Get-ChildItem -Recurse
+
+      & "$(Build.SourcesDirectory)\scripts\deploy.ps1"
     displayName: "Deploy to Windows Laptop"
