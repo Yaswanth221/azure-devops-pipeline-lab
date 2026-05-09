@@ -1,0 +1,20 @@
+trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - checkout: self
+
+  - script: chmod +x scripts/build.sh
+    displayName: "Give execute permission"
+
+  - script: ./scripts/build.sh
+    displayName: "Run build script"
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: "build"
+      ArtifactName: "python-app"
+    displayName: "Publish Artifact"

@@ -1,0 +1,11 @@
+trigger: none
+
+pool:
+  name: Default
+
+steps:
+  - checkout: self
+
+  - powershell: |
+      ./scripts/deploy.ps1
+    displayName: "Deploy to Windows Laptop"
