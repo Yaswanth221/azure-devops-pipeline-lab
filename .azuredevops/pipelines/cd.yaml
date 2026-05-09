@@ -3,15 +3,16 @@ trigger: none
 pool:
   name: Default
 
+workspace:
+  clean: all
+
 steps:
   - checkout: self
+    clean: true
 
   - powershell: |
-      Write-Host "Current Directory:"
-      Get-Location
-
-      Write-Host "Listing files:"
-      Get-ChildItem -Recurse
+      Write-Host "Listing scripts folder..."
+      Get-ChildItem "$(Build.SourcesDirectory)\scripts"
 
       & "$(Build.SourcesDirectory)\scripts\deploy.ps1"
     displayName: "Deploy to Windows Laptop"
